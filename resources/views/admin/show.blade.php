@@ -1,22 +1,33 @@
 <!-- resources/views/admin/show.blade.php -->
-<h2>Detail Ticket</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detail Aduan</title>
+</head>
+<body>
+    <h2>Detail Aduan</h2>
 
-<p>Nama: {{ $aduan->nama }}</p>
-<p>Fakultas: {{ $aduan->fakultas }}</p>
-<p>Jurusan: {{ $aduan->jurusan }}</p>
-<p>NIM: {{ $aduan->nim }}</p>
-<p>Email: {{ $aduan->email }}</p>
-<p>Kategori: {{ $aduan->kategori }}</p>
-<p>Judul Aduan: {{ $aduan->judul }}</p>
-<p>Deskripsi: {{ $aduan->deskripsi }}</p>
-<p>No Ticket: {{ $aduan->ticket_number }}</p>
+    <p><strong>Ticket:</strong> {{ $aduan->ticket_number }}</p>
+    <p><strong>Nama:</strong> {{ $aduan->nama }}</p>
+    <p><strong>NIM:</strong> {{ $aduan->nim }}</p>
+    <p><strong>Email:</strong> {{ $aduan->email }}</p>
+    <p><strong>Fakultas:</strong> {{ $aduan->fakultas }}</p>
+    <p><strong>Jurusan:</strong> {{ $aduan->jurusan }}</p>
+    <p><strong>Kategori:</strong> {{ $aduan->kategori }}</p>
+    <p><strong>Judul:</strong> {{ $aduan->judul }}</p>
+    <p><strong>Deskripsi:</strong> {{ $aduan->deskripsi }}</p>
 
-@if($aduan->balasan)
-    <p><strong>Balasan:</strong> {{ $aduan->balasan }}</p>
-@else
-    <form action="/admin/aduan/{{ $aduan->id }}/balas" method="POST">
-        @csrf
-        <textarea name="balasan" placeholder="Tulis balasan..." required></textarea>
-        <button type="submit">Kirim Balasan</button>
-    </form>
-@endif
+    <h3>Balasan</h3>
+    @if($aduan->balasan)
+        <p style="color: green;">{{ $aduan->balasan }}</p>
+    @else
+        <form action="{{ url('/admin/aduan/'.$aduan->id.'/balas') }}" method="POST">
+            @csrf
+            <textarea name="balasan" placeholder="Tulis balasan..." required></textarea><br>
+            <button type="submit">Kirim Balasan</button>
+        </form>
+    @endif
+
+    <p><a href="{{ url('/admin/aduan') }}">← Kembali</a></p>
+</body>
+</html>

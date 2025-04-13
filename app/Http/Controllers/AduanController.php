@@ -35,6 +35,9 @@ class AduanController extends Controller
         
         $validated['kategori'] = $request->kategori;
 
+        // dd($validated); (digunakan untuk check data yang diinput)
+        // dd($request->kategori)
+
         Aduan::create($validated);
 
         return redirect('/')->with('success', 'Aduan berhasil dikirim!');
@@ -43,8 +46,8 @@ class AduanController extends Controller
     // Halaman list aduan (admin)
     public function index()
     {
-        $aduans = Aduan::latest()->get();
-        return view('admin.index', compact('aduans'));
+    $aduans = Aduan::all(); // ambil semua data dari database
+    return view('admin.index', compact('aduans')); // kirim ke view
     }
 
     // Detail aduan (admin)

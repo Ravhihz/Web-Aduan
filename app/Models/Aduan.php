@@ -6,5 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Aduan extends Model
 {
-    protected $fillable = ['nama', 'judul', 'isi', 'kategori']; // tambahkan semua field yang ingin diinput
+    protected $fillable = [
+        'nama',
+        'fakultas',
+        'jurusan',
+        'nim',
+        'email',
+        'judul',
+        'kategori',
+        'ticket_number',
+        'deskripsi',
+    ];
+     // tambahkan semua field yang ingin diinput
 }
